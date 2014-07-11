@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>TableIndiceValue</servlet-name>
+        <servlet-class>Servlet.TableIndiceValue</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TableETFValue</servlet-name>
+        <servlet-class>Servlet.TableETFValue</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TableStockValue</servlet-name>
+        <servlet-class>Servlet.TableStockValue</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TableIndiceValue</servlet-name>
+        <url-pattern>/TableIndiceValue</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TableETFValue</servlet-name>
+        <url-pattern>/TableETFValue</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TableStockValue</servlet-name>
+        <url-pattern>/TableStockValue</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

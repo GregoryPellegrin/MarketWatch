@@ -1,0 +1,102 @@
+/**
+ * Gregory Pellegrin
+ * pellegrin.gregory.work@gmail.com
+ */
+
+body, h1, p, a, img, table, tr, th, td, input, ul, li
+{
+	list-style-type: none;
+	
+	font-size: 1.0em;
+	text-align: center;
+	text-decoration: none;
+	
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+
+html, body
+{
+	width: 100%;
+	height: 100%;
+}
+
+section.tableSection
+{
+	width: 90%;
+	
+	margin: auto;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+section.tableSection article, section.tableSection article table
+{
+	width: 100%;
+	
+	margin: auto;
+}
+
+.indiceThSpan
+{
+	font-size: 1.1em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.indiceTdSpan
+{
+	font-size: 1.0em;
+	text-align: center;
+}
+
+.dataTableThSpan
+{
+	font-size: 1.1em;
+	font-weight: bold;
+	text-align: right;
+	
+	border-bottom: 1px solid;
+	padding-right: 7px;
+	padding-left: 7px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.dataTableThSpan:first-child
+{
+	text-align: left;
+}
+
+.dataTableTdSpan
+{
+	font-size: 1.0em;
+	text-align: right;
+	
+	padding-right: 7px;
+	padding-left: 7px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.dataTableTdSpan:first-child
+{
+	text-align: left;
+}
+
+.google-visualization-table-div-page
+{
+	margin: 0px;
+}
+
+.page-number.gradient
+{
+	vertical-align: middle;
+	
+	margin-right: 2px;
+	margin-left: 2px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}

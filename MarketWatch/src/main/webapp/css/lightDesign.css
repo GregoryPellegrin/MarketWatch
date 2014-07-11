@@ -1,0 +1,72 @@
+/**
+ * Gregory Pellegrin
+ * pellegrin.gregory.work@gmail.com
+ */
+
+body
+{
+	background-color: rgb(231, 231, 231);
+}
+
+section.tableSection
+{
+	background-color: rgb(255, 255, 255);
+}
+
+.indiceTh
+{
+	background-color: rgb(255, 255, 255);
+}
+
+.indiceThSpan
+{
+	color: rgb(0, 0, 0);
+}
+
+.indiceTd
+{
+	background-color: rgb(255, 255, 255);
+	
+	color: rgb(0, 0, 0);
+}
+
+.indiceTdSelected
+{
+	background-color: rgb(255, 255, 255);
+}
+
+.dataTableTh
+{
+	background-color: rgb(255, 255, 255);
+}
+
+.dataTableThSpan
+{
+	color: rgb(0, 0, 0);
+	
+	border-bottom-color: rgb(0, 0, 0);
+}
+
+.dataTableTdEven
+{
+	background-color: rgb(255, 255, 255);
+	
+	color: rgb(0, 0, 0);
+}
+
+.dataTableTdOdd
+{
+	background-color: rgb(240, 240, 240);
+	
+	color: rgb(0, 0, 0);
+}
+
+.dataTableTdHover
+{
+	background-color: rgb(220, 220, 220);
+}
+
+.dataTableTdSelected
+{
+	background-color: rgb(210, 210, 210);
+}
