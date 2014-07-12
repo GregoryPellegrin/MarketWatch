@@ -16,40 +16,49 @@ body, h1, p, a, img, table, tr, th, td, input, ul, li
 	padding: 0px;
 }
 
-html, body
+section
 {
-	width: 100%;
-	height: 100%;
-}
-
-section.tableSection
-{
-	width: 90%;
+	width: 99%;
 	
 	margin: auto;
-	margin-bottom: 20px;
-	border-radius: 5px;
-	padding: 5px;
+	margin-top: 10px;
 }
 
-section.tableSection article, section.tableSection article table
+section article, section article table
 {
 	width: 100%;
 	
 	margin: auto;
+}
+
+section#indiceSection article table, section#etfSection article table
+{
+	border-collapse: separate;
+	border-spacing: 6px 0px;
 }
 
 .indiceThSpan
 {
-	font-size: 1.1em;
+	font-size: 1.3em;
 	font-weight: bold;
 	text-align: center;
+	
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	padding-top: 10px;
+	padding-bottom: 8px;
 }
 
 .indiceTdSpan
 {
-	font-size: 1.0em;
+	font-size: 1.3em;
+	font-weight: bold;
 	text-align: center;
+	
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	padding-top: 8px;
+	padding-bottom: 10px;
 }
 
 .dataTableThSpan
@@ -73,6 +82,7 @@ section.tableSection article, section.tableSection article table
 .dataTableTdSpan
 {
 	font-size: 1.0em;
+	font-weight: bold;
 	text-align: right;
 	
 	padding-right: 7px;

@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<section id="etfSection" class="tableSection">
+<section id="etfSection">
 	<article>
 		<div id="etfValueTable"></div>
 	</article>

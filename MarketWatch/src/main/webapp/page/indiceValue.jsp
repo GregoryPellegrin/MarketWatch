@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<section id="indiceSection" class="tableSection">
+<section id="indiceSection">
 	<article>
 		<div id="indiceValueTable"></div>
 	</article>

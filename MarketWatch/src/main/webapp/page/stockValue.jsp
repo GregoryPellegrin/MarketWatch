@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<section id="stockSection" class="tableSection">
+<section id="stockSection">
 	<article>
 		<div id="stockValueTable"></div>
 	</article>

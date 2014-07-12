@@ -5,22 +5,22 @@
 
 body
 {
-	background-color: rgb(20, 20, 20);
+	background-color: rgb(231, 231, 231);
 }
 
 section
 {
-	background-color: rgb(20, 20, 20);
+	background-color: rgb(231, 231, 231);
 }
 
 .google-visualization-table-table
 {
-	background-color: rgb(20, 20, 20);
+	background-color: rgb(231, 231, 231);
 }
 
 .indiceTh
 {
-	background-color: rgb(20, 20, 20);
+	background-color: rgb(231, 231, 231);
 }
 
 .indiceThSpan
@@ -32,7 +32,7 @@ section
 
 .indiceTd
 {
-	background-color: rgb(20, 20, 20);
+	background-color: rgb(231, 231, 231);
 	
 	color: rgb(255, 255, 255);
 }

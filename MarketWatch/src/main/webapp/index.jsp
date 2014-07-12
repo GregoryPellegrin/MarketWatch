@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="author" content="Gregory Pellegrin pellegrin.gregory.work@gmail.com"/>
-		<meta name="description" lang="en" content="Market and stocks data"/>
+		<meta name="description" lang="en" content="Market and stock data"/>
 		<link rel="icon" type="image/png" href="./resources/icon/logo.png"/>
 		<title>Market Watch</title>
 		
@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="./script/tableLoad.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="./css/design.css"/>
-		<link rel="stylesheet" type="text/css" href="./css/darkDesign.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/lightDesign.css"/>
 	</head>
 	
 	<body>

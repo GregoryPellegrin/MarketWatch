@@ -181,7 +181,7 @@ public class TableStockValue extends DataSourceServlet
 		}*/
 		catch (IOException e)
 		{
-			System.out.println("TableStockValue setUrlYahoo() IOException " + "URL : " + path + " " + e);
+			System.out.println("TableStockValue setUrlYahoo() IOException " + "PATH : " + path + " " + e);
 		}
 	}
 }

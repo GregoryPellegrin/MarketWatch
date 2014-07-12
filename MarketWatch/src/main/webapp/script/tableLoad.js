@@ -77,16 +77,14 @@ function etfValueResponse (response)
 	{
 		data.removeRows(0, data.getNumberOfRows() - 1);
 
-		data.setProperties(0, 0, {style: 'color: blue;'});
-
-		for (var i = 1; i < data.getNumberOfColumns(); i++)
+		for (var i = 0; i < data.getNumberOfColumns(); i++)
 		{
 			if (data.getValue(0, i).indexOf('-') > -1)
 				data.setProperties(0, i, {style: 'color: red;'});
 			else
 				data.setProperties(0, i, {style: 'color: green;'});
 		}
-
+		
 		table.draw(data,
 		{
 			showRowNumber: false,
@@ -152,7 +150,7 @@ function stockValueResponse (response)
 			allowHtml: true,
 			alternatingRowStyle: true,
 			page: 'enable',
-			pageSize: 10,
+			pageSize: Math.round(($(window).height()-(90*2+10+45+35)-10)/26),
 			sortColumn: 2,
 			sortAscending: false,
 			cssClassNames: cssClassNames

@@ -24,7 +24,7 @@ public enum FieldYahooFinance
 	SPY ("SPY"),
 	SSO ("SSO"),
 	SDS ("SDS"),
-	VIX ("VIX"),
+	VIX ("^VIX"),
 	TVIX ("TVIX"),
 	GOLD ("GCM14.CMX"),
 	GLD ("GLD"),

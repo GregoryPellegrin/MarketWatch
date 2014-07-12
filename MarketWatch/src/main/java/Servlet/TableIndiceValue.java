@@ -53,7 +53,6 @@ public class TableIndiceValue extends DataSourceServlet
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.CAC40.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.DAX30.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.NIKKEI225.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.HKSE.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.ADD_COLUMN.toString();
 		
@@ -86,7 +85,6 @@ public class TableIndiceValue extends DataSourceServlet
 			dataTable.addColumn(new ColumnDescription(FieldIndice.CAC40.toString(), ValueType.TEXT, FieldIndice.CAC40.toString()));
 			dataTable.addColumn(new ColumnDescription(FieldIndice.DAX30.toString(), ValueType.TEXT, FieldIndice.DAX30.toString()));
 			dataTable.addColumn(new ColumnDescription(FieldIndice.NIKKEI225.toString(), ValueType.TEXT, FieldIndice.NIKKEI225.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.HKSE.toString(), ValueType.TEXT, FieldIndice.HKSE.toString()));
 			
 			row.addCell(this.getTime());
 			row.addCell(this.getDowJonesValue());
@@ -130,14 +128,8 @@ public class TableIndiceValue extends DataSourceServlet
 	private String getTime ()
 	{
 		Calendar time = GregorianCalendar.getInstance();
-		String amPm;
 		
-		if (time.get(Calendar.AM_PM) == Calendar.AM)
-			amPm = "AM";
-		else
-			amPm = "PM";
-		
-		return time.get(Calendar.HOUR) + ":" + time.get(Calendar.MINUTE) + amPm;
+		return time.get(Calendar.HOUR_OF_DAY) + ":" + time.get(Calendar.MINUTE);
 	}
 	
 	private String getDowJonesValue ()
