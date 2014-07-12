@@ -37,7 +37,7 @@ section#indiceSection article table, section#etfSection article table
 	border-spacing: 6px 0px;
 }
 
-.indiceThSpan
+.indiceThSpan, .etfThSpan
 {
 	font-size: 1.3em;
 	font-weight: bold;
@@ -49,7 +49,7 @@ section#indiceSection article table, section#etfSection article table
 	padding-bottom: 8px;
 }
 
-.indiceTdSpan
+.indiceTdSpan, .etfTdSpan
 {
 	font-size: 1.3em;
 	font-weight: bold;
@@ -109,4 +109,30 @@ section#indiceSection article table, section#etfSection article table
 	margin-left: 2px;
 	padding-top: 7px;
 	padding-bottom: 7px;
+}
+
+footer
+{
+	width: 99%;
+	
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+footer ul
+{
+	display: inline;
+}
+
+footer ul li
+{
+	display: inline;
+}
+
+footer a
+{
+	text-align: center;
 }

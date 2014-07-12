@@ -21,7 +21,7 @@ function etfValueTable ()
 {
 	var etfValueData = new google.visualization.Query('TableETFValue', {sendMethod: 'scriptInjection'});
 	
-	//etfValueData.setRefreshInterval(10);
+	//etfValueData.setRefreshInterval(5);
 	etfValueData.send(etfValueResponse);
 }
 

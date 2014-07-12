@@ -63,13 +63,13 @@ function etfValueResponse (response)
 	var table = new google.visualization.Table(document.getElementById('etfValueTable'));
 	var cssClassNames =
 	{
-		headerRow: 'indiceTh',
-		tableRow: 'indiceTd',
+		headerRow: 'etfTh',
+		tableRow: 'etfTd',
 		oddTableRow: '',
-		hoverTableRow: 'indiceTdHover',
-		selectedTableRow: 'indiceTdSelected',
-		headerCell: 'indiceThSpan',
-		tableCell: 'indiceTdSpan',
+		hoverTableRow: 'etfTdHover',
+		selectedTableRow: 'etfTdSelected',
+		headerCell: 'etfThSpan',
+		tableCell: 'etfTdSpan',
 		rowNumberCell: ''
 	};
 	
@@ -140,17 +140,18 @@ function stockValueResponse (response)
 		doubleNumberFormatter.format(data, 9);
 		doubleNumberFormatter.format(data, 10);
 		doubleNumberFormatter.format(data, 11);
-
+		
 		integerNumberFormatter.format(data, 12);
 		integerNumberFormatter.format(data, 13);
-
+		
+		data.sort([{column: 2, desc: true}]);
+		data.removeRows(getNumberOfRows(), data.getNumberOfRows() - 1);
+		
 		table.draw(data,
 		{
 			showRowNumber: false,
 			allowHtml: true,
 			alternatingRowStyle: true,
-			page: 'enable',
-			pageSize: Math.round(($(window).height()-(90*2+10+45+35)-10)/26),
 			sortColumn: 2,
 			sortAscending: false,
 			cssClassNames: cssClassNames

@@ -102,11 +102,11 @@ public class TableETFValue extends DataSourceServlet
 		}
 		catch (MalformedURLException e)
 		{
-			System.out.println("TableIndiceValue generateDataTable() MalformedURLException " + "URL : " + this.urlYahoo + " " + e);
+			System.out.println("TableETFValue generateDataTable() MalformedURLException " + "URL : " + this.urlYahoo + " " + e);
 		}
 		catch (IOException e)
 		{
-			System.out.println("TableIndiceValue generateDataTable() IOException " + e);
+			System.out.println("TableETFValue generateDataTable() IOException " + e);
 		}
 		
 		return dataTable;
