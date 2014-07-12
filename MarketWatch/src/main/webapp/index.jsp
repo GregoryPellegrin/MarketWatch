@@ -10,7 +10,7 @@
 		<meta charset="utf-8"/>
 		<meta name="author" content="Gregory Pellegrin pellegrin.gregory.work@gmail.com"/>
 		<meta name="description" lang="en" content="Market and stock data"/>
-		<link rel="icon" type="image/png" href="./resources/icon/logo.png"/>
+		<link rel="shortcut icon" type="image/x-icon" href="./resources/icon/logo.ico"/>
 		<title>Market Watch</title>
 		
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
