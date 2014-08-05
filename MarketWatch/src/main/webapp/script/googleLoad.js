@@ -13,7 +13,7 @@ function indiceTable ()
 {
 	var indiceData = new google.visualization.Query('TableIndiceValue', {sendMethod: 'scriptInjection'});
 	
-	//indiceData.setRefreshInterval(5);
+	indiceData.setRefreshInterval(15);
 	indiceData.send(indiceResponse);
 }
 
@@ -21,7 +21,7 @@ function etfValueTable ()
 {
 	var etfValueData = new google.visualization.Query('TableETFValue', {sendMethod: 'scriptInjection'});
 	
-	//etfValueData.setRefreshInterval(5);
+	etfValueData.setRefreshInterval(15);
 	etfValueData.send(etfValueResponse);
 }
 
@@ -29,6 +29,6 @@ function stockValueTable ()
 {
 	var stockValueData = new google.visualization.Query('TableStockValue', {sendMethod: 'scriptInjection'});
 	
-	//stockValueData.setRefreshInterval(10);
+	//stockValueData.setRefreshInterval(15);
 	stockValueData.send(stockValueResponse);
 }

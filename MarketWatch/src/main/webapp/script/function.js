@@ -13,11 +13,6 @@ function changeDesignInDark ()
 	$('#design').attr('href', './css/darkDesign.css');
 }
 
-function changeDesignInDarkLight ()
-{
-	$('#design').attr('href', './css/darkLightDesign.css');
-}
-
 function getNumberOfRows ()
 {
 	var height = $(window).height();
