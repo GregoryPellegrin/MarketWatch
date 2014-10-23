@@ -3,27 +3,18 @@
  * pellegrin.gregory.work@gmail.com
  */
 
-function indiceResponse (response)
+function createUsTable (response)
 {
-	if (response.isError())
-	{
-		alert(response.getMessage() + ' ' + response.getDetailedMessage());
-		
-		return;
-	}
+	error(response);
 	
 	var data = response.getDataTable();
-	var table = new google.visualization.Table(document.getElementById('indiceValueTable'));
+	var table = new google.visualization.Table(document.getElementById('indiceUSTable'));
 	var cssClassNames =
 	{
-		headerRow: 'indiceTh',
-		tableRow: 'indiceTd',
-		oddTableRow: '',
-		hoverTableRow: 'indiceTdHover',
-		selectedTableRow: 'indiceTdSelected',
-		headerCell: 'indiceThSpan',
-		tableCell: 'indiceTdSpan',
-		rowNumberCell: ''
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
 	};
 	
 	if (data.getNumberOfRows() > 0)
@@ -39,7 +30,7 @@ function indiceResponse (response)
 			else
 				data.setProperties(0, i, {style: 'color: green;'});
 		}
-
+		
 		table.draw(data,
 		{
 			showRowNumber: false,
@@ -50,27 +41,18 @@ function indiceResponse (response)
 	}
 }
 
-function etfValueResponse (response)
+function createEUTable (response)
 {
-	if (response.isError())
-	{
-		alert(response.getMessage() + ' ' + response.getDetailedMessage());
-		
-		return;
-	}
+	error(response);
 	
 	var data = response.getDataTable();
-	var table = new google.visualization.Table(document.getElementById('etfValueTable'));
+	var table = new google.visualization.Table(document.getElementById('indiceEUTable'));
 	var cssClassNames =
 	{
-		headerRow: 'etfTh',
-		tableRow: 'etfTd',
-		oddTableRow: '',
-		hoverTableRow: 'etfTdHover',
-		selectedTableRow: 'etfTdSelected',
-		headerCell: 'etfThSpan',
-		tableCell: 'etfTdSpan',
-		rowNumberCell: ''
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
 	};
 	
 	if (data.getNumberOfRows() > 0)
@@ -95,65 +77,145 @@ function etfValueResponse (response)
 	}
 }
 
-function stockValueResponse (response)
+function createAsiaTable (response)
 {
-	if (response.isError())
-	{
-		alert(response.getMessage() + ' ' + response.getDetailedMessage());
-		
-		return;
-	}
+	error(response);
 	
 	var data = response.getDataTable();
-	var table = new google.visualization.Table(document.getElementById('stockValueTable'));
+	var table = new google.visualization.Table(document.getElementById('indiceAsiaTable'));
 	var cssClassNames =
 	{
-		headerRow: 'dataTableTh',
-		tableRow: 'dataTableTdEven',
-		oddTableRow: 'dataTableTdOdd',
-		hoverTableRow: 'dataTableTdHover',
-		selectedTableRow: 'dataTableTdSelected',
-		headerCell: 'dataTableThSpan',
-		tableCell: 'dataTableTdSpan',
-		rowNumberCell: ''
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
 	};
-	var netChangeColorFormatter = new google.visualization.ColorFormat();
-	var doubleNumberFormatter = new google.visualization.NumberFormat({decimalSymbol: '.', groupingSymbol: ',', fractionDigits: 2});
-	var integerNumberFormatter = new google.visualization.NumberFormat({decimalSymbol: '.', groupingSymbol: ',', fractionDigits: 0});
-	
-	netChangeColorFormatter.addRange(-9999999, 0, 'red', '00FFFFFF');
-	netChangeColorFormatter.addRange(0, 9999999, 'green', '00FFFFFF');
 	
 	if (data.getNumberOfRows() > 0)
 	{
-		netChangeColorFormatter.format(data, 2);
-		netChangeColorFormatter.format(data, 3);
+		data.removeRows(0, data.getNumberOfRows() - 1);
 
-		doubleNumberFormatter.format(data, 1);
-		doubleNumberFormatter.format(data, 2);
-		doubleNumberFormatter.format(data, 3);
-		doubleNumberFormatter.format(data, 4);
-		doubleNumberFormatter.format(data, 5);
-		doubleNumberFormatter.format(data, 6);
-		doubleNumberFormatter.format(data, 7);
-		doubleNumberFormatter.format(data, 8);
-		doubleNumberFormatter.format(data, 9);
-		doubleNumberFormatter.format(data, 10);
-		doubleNumberFormatter.format(data, 11);
-		
-		integerNumberFormatter.format(data, 12);
-		integerNumberFormatter.format(data, 13);
-		
-		data.sort([{column: 2, desc: true}]);
-		data.removeRows(getNumberOfRows(), data.getNumberOfRows() - 1);
+		for (var i = 0; i < data.getNumberOfColumns(); i++)
+		{
+			if (data.getValue(0, i).indexOf('-') > -1)
+				data.setProperties(0, i, {style: 'color: red;'});
+			else
+				data.setProperties(0, i, {style: 'color: green;'});
+		}
 		
 		table.draw(data,
 		{
 			showRowNumber: false,
 			allowHtml: true,
-			alternatingRowStyle: true,
-			sortColumn: 2,
-			sortAscending: false,
+			sort: 'disable',
+			cssClassNames: cssClassNames
+		});
+	}
+}
+
+function createOtherTable (response)
+{
+	error(response);
+	
+	var data = response.getDataTable();
+	var table = new google.visualization.Table(document.getElementById('indiceOtherTable'));
+	var cssClassNames =
+	{
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
+	};
+	
+	if (data.getNumberOfRows() > 0)
+	{
+		data.removeRows(0, data.getNumberOfRows() - 1);
+
+		for (var i = 0; i < data.getNumberOfColumns(); i++)
+		{
+			if (data.getValue(0, i).indexOf('-') > -1)
+				data.setProperties(0, i, {style: 'color: red;'});
+			else
+				data.setProperties(0, i, {style: 'color: green;'});
+		}
+		
+		table.draw(data,
+		{
+			showRowNumber: false,
+			allowHtml: true,
+			sort: 'disable',
+			cssClassNames: cssClassNames
+		});
+	}
+}
+
+function createETFTable (response)
+{
+	error(response);
+	
+	var data = response.getDataTable();
+	var table = new google.visualization.Table(document.getElementById('etfTable'));
+	var cssClassNames =
+	{
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
+	};
+	
+	if (data.getNumberOfRows() > 0)
+	{
+		data.removeRows(0, data.getNumberOfRows() - 1);
+
+		for (var i = 0; i < data.getNumberOfColumns(); i++)
+		{
+			if (data.getValue(0, i).indexOf('-') > -1)
+				data.setProperties(0, i, {style: 'color: red;'});
+			else
+				data.setProperties(0, i, {style: 'color: green;'});
+		}
+		
+		table.draw(data,
+		{
+			showRowNumber: false,
+			allowHtml: true,
+			sort: 'disable',
+			cssClassNames: cssClassNames
+		});
+	}
+}
+
+function createStockTable (response)
+{
+	error(response);
+	
+	var data = response.getDataTable();
+	var table = new google.visualization.Table(document.getElementById('stockTable'));
+	var cssClassNames =
+	{
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
+	};
+	
+	if (data.getNumberOfRows() > 0)
+	{
+		data.removeRows(0, data.getNumberOfRows() - 1);
+
+		for (var i = 0; i < data.getNumberOfColumns(); i++)
+		{
+			if (data.getValue(0, i).indexOf('-') > -1)
+				data.setProperties(0, i, {style: 'color: red;'});
+			else
+				data.setProperties(0, i, {style: 'color: green;'});
+		}
+		
+		table.draw(data,
+		{
+			showRowNumber: false,
+			allowHtml: true,
+			sort: 'disable',
 			cssClassNames: cssClassNames
 		});
 	}

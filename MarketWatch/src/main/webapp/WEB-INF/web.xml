@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>TableIndiceValue</servlet-name>
-        <servlet-class>Servlet.TableIndiceValue</servlet-class>
+        <servlet-name>TableIndiceUS</servlet-name>
+        <servlet-class>Servlet.TableIndiceUS</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TableETFValue</servlet-name>
-        <servlet-class>Servlet.TableETFValue</servlet-class>
+        <servlet-name>TableIndiceEU</servlet-name>
+        <servlet-class>Servlet.TableIndiceEU</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TableStockValue</servlet-name>
-        <servlet-class>Servlet.TableStockValue</servlet-class>
+        <servlet-name>TableIndiceAsia</servlet-name>
+        <servlet-class>Servlet.TableIndiceAsia</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TableIndiceOther</servlet-name>
+        <servlet-class>Servlet.TableIndiceOther</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TableETF</servlet-name>
+        <servlet-class>Servlet.TableETF</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TableStock</servlet-name>
+        <servlet-class>Servlet.TableStock</servlet-class>
+    </servlet>
+	
     <servlet-mapping>
-        <servlet-name>TableIndiceValue</servlet-name>
-        <url-pattern>/TableIndiceValue</url-pattern>
+        <servlet-name>TableIndiceUS</servlet-name>
+        <url-pattern>/TableIndiceUS</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TableETFValue</servlet-name>
-        <url-pattern>/TableETFValue</url-pattern>
+        <servlet-name>TableIndiceEU</servlet-name>
+        <url-pattern>/TableIndiceEU</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TableStockValue</servlet-name>
-        <url-pattern>/TableStockValue</url-pattern>
+        <servlet-name>TableIndiceAsia</servlet-name>
+        <url-pattern>/TableIndiceAsia</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TableIndiceOther</servlet-name>
+        <url-pattern>/TableIndiceOther</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TableETF</servlet-name>
+        <url-pattern>/TableETF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TableStock</servlet-name>
+        <url-pattern>/TableStock</url-pattern>
+    </servlet-mapping>
+	
     <session-config>
         <session-timeout>
             30

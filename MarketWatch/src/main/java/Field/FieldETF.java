@@ -8,15 +8,12 @@ package Field;
 public enum FieldETF
 {
 	SPY ("SPY"),
-	SSO ("SSO"),
+	UPRO ("UPRO"),
 	SDS ("SDS"),
 	
-	VIX ("VIX"),
 	TVIX ("TVIX"),
 	
-	GOLD ("Gold"),
 	GLD ("GLD"),
-	
 	SLV ("SLV");
 	
 	private String field = "";

@@ -5,30 +5,57 @@
 
 google.load('visualization', '1', {packages: ['table', 'controls']});
 
-google.setOnLoadCallback(indiceTable);
-google.setOnLoadCallback(etfValueTable);
-google.setOnLoadCallback(stockValueTable);
+google.setOnLoadCallback(indiceUSTable);
+google.setOnLoadCallback(indiceEUTable);
+google.setOnLoadCallback(indiceAsiaTable);
+google.setOnLoadCallback(indiceOtherTable);
+google.setOnLoadCallback(etfTable);
+google.setOnLoadCallback(stockTable);
 
-function indiceTable ()
+function indiceUSTable ()
 {
-	var indiceData = new google.visualization.Query('TableIndiceValue', {sendMethod: 'scriptInjection'});
+	var indiceUSData = new google.visualization.Query('TableIndiceUS', {sendMethod: 'scriptInjection'});
 	
-	indiceData.setRefreshInterval(15);
-	indiceData.send(indiceResponse);
+	indiceUSData.setRefreshInterval(5);
+	indiceUSData.send(createUsTable);
 }
 
-function etfValueTable ()
+function indiceEUTable ()
 {
-	var etfValueData = new google.visualization.Query('TableETFValue', {sendMethod: 'scriptInjection'});
+	var indiceEUData = new google.visualization.Query('TableIndiceEU', {sendMethod: 'scriptInjection'});
 	
-	etfValueData.setRefreshInterval(15);
-	etfValueData.send(etfValueResponse);
+	indiceEUData.setRefreshInterval(10);
+	indiceEUData.send(createEUTable);
 }
 
-function stockValueTable ()
+function indiceAsiaTable ()
 {
-	var stockValueData = new google.visualization.Query('TableStockValue', {sendMethod: 'scriptInjection'});
+	var indiceAsiaData = new google.visualization.Query('TableIndiceAsia', {sendMethod: 'scriptInjection'});
 	
-	//stockValueData.setRefreshInterval(15);
-	stockValueData.send(stockValueResponse);
+	indiceAsiaData.setRefreshInterval(10);
+	indiceAsiaData.send(createAsiaTable);
+}
+
+function indiceOtherTable ()
+{
+	var indiceOtherData = new google.visualization.Query('TableIndiceOther', {sendMethod: 'scriptInjection'});
+	
+	indiceOtherData.setRefreshInterval(5);
+	indiceOtherData.send(createOtherTable);
+}
+
+function etfTable ()
+{
+	var etfData = new google.visualization.Query('TableETF', {sendMethod: 'scriptInjection'});
+	
+	etfData.setRefreshInterval(5);
+	etfData.send(createETFTable);
+}
+
+function stockTable ()
+{
+	var stockData = new google.visualization.Query('TableStock', {sendMethod: 'scriptInjection'});
+	
+	stockData.setRefreshInterval(20);
+	stockData.send(createStockTable);
 }

@@ -5,7 +5,7 @@
 
 package Servlet;
 
-import Field.FieldETF;
+import Field.FieldIndice;
 import Field.FieldYahooFinance;
 import Filter.FilterCsv;
 import com.google.visualization.datasource.DataSourceServlet;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
-public class TableETFValue extends DataSourceServlet
+public class TableIndiceAsia extends DataSourceServlet
 {
 	private final ArrayList <ColumnDescription> column = new ArrayList <> ();
 	private String urlYahoo;
@@ -37,19 +37,13 @@ public class TableETFValue extends DataSourceServlet
 	@Override
 	public void init ()
 	{
-		this.column.add(new ColumnDescription(FieldETF.SPY.toString(), ValueType.TEXT, FieldETF.SPY.toString()));
-		this.column.add(new ColumnDescription(FieldETF.SSO.toString(), ValueType.TEXT, FieldETF.SSO.toString()));
+		this.column.add(new ColumnDescription (FieldIndice.NIKKEI225.toString(), ValueType.TEXT, FieldIndice.NIKKEI225.toString()));
+		this.column.add(new ColumnDescription (FieldIndice.HKSE.toString(), ValueType.TEXT, FieldIndice.HKSE.toString()));
 		
 		this.urlYahoo = FieldYahooFinance.URL.toString();
 		
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.SPY.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.SSO.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.SDS.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.VIX.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.TVIX.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.GOLD.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.GLD.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.SLV.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
+		this.urlYahoo = this.urlYahoo + FieldYahooFinance.NIKKEI225.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
+		this.urlYahoo = this.urlYahoo + FieldYahooFinance.HKSE.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.ADD_COLUMN.toString();
 		
@@ -75,13 +69,6 @@ public class TableETFValue extends DataSourceServlet
 			
 			dataTable = CsvDataSourceHelper.read(reader, this.column, false);
 			
-			dataTable.addColumn(new ColumnDescription(FieldETF.SDS.toString(), ValueType.TEXT, FieldETF.SDS.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldETF.VIX.toString(), ValueType.TEXT, FieldETF.VIX.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldETF.TVIX.toString(), ValueType.TEXT, FieldETF.TVIX.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldETF.GOLD.toString(), ValueType.TEXT, FieldETF.GOLD.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldETF.GLD.toString(), ValueType.TEXT, FieldETF.GLD.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldETF.SLV.toString(), ValueType.TEXT, FieldETF.SLV.toString()));
-			
 			for (int i = 0; i < dataTable.getNumberOfRows(); i++)
 			{
 				String lastPriceDataTable = dataTable.getCell(i, 0).toString();
@@ -102,11 +89,11 @@ public class TableETFValue extends DataSourceServlet
 		}
 		catch (MalformedURLException e)
 		{
-			System.out.println("TableETFValue generateDataTable() MalformedURLException " + "URL : " + this.urlYahoo + " " + e);
+			System.out.println("TableIndiceAsia generateDataTable() MalformedURLException " + "URL : " + this.urlYahoo + " " + e);
 		}
 		catch (IOException e)
 		{
-			System.out.println("TableETFValue generateDataTable() IOException " + e);
+			System.out.println("TableIndiceAsia generateDataTable() IOException " + e);
 		}
 		
 		return dataTable;

@@ -20,7 +20,11 @@ public enum FieldIndice
 	DAX30 ("DAX 30"),
 	
 	NIKKEI225 ("Nikkei 225"),
-	HKSE ("HKSE");
+	HKSE ("HKSE"),
+	
+	VIX ("VIX"),
+	BDI ("BDI"),
+	GOLD ("Gold");
 	
 	private String field = "";
 	

@@ -11,23 +11,9 @@ public enum FieldStockValue
 	LAST_PRICE ("Last"),
 	
 	CHANGE_PERCENT ("Net Change (%)"),
-	CHANGE_DOLLAR ("Net Change ($)"),
-	
-	BID ("Bid"),
-	ASK ("Ask"),
-	
-	OPEN ("Open"),
-	CLOSE ("Prev Close"),
-	
-	HIGH ("High"),
-	LOW ("Low"),
-	WEEK_52_HIGH ("52 Week High"),
-	WEEK_52_LOW ("52 Week Low"),
 	
 	VOLUME ("Volume"),
-	AVERAGE_VOLUME ("Average Volume"),
-	
-	MARKET_CAP ("Market Cap");
+	AVERAGE_VOLUME ("Average Volume");
 	
 	private String field = "";
 	

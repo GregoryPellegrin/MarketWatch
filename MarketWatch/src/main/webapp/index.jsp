@@ -21,16 +21,10 @@
 		<script type="text/javascript" src="./script/tableLoad.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="./css/design.css"/>
-		<link id="design" rel="stylesheet" type="text/css" href="./css/lightDesign.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/lightDesign.css"/>
 	</head>
 	
 	<body>
-		<jsp:include page="./page/indiceValue.jsp"></jsp:include>
-		
-		<jsp:include page="./page/etfValue.jsp"></jsp:include>
-		
-		<jsp:include page="./page/stockValue.jsp"></jsp:include>
-		
-		<jsp:include page="./page/changeDesign.jsp"></jsp:include>
+		<jsp:include page="./page/table.jsp"></jsp:include>
 	</body>
 </html>

@@ -5,6 +5,7 @@
 
 package Servlet;
 
+import Data.Stock;
 import Field.FieldNasdaq;
 import Field.FieldStockValue;
 import Field.FieldYahooFinance;
@@ -14,6 +15,7 @@ import com.google.visualization.datasource.DataSourceServlet;
 import com.google.visualization.datasource.base.DataSourceException;
 import com.google.visualization.datasource.datatable.ColumnDescription;
 import com.google.visualization.datasource.datatable.DataTable;
+import com.google.visualization.datasource.datatable.TableRow;
 import com.google.visualization.datasource.datatable.value.ValueType;
 import com.google.visualization.datasource.query.Query;
 import com.google.visualization.datasource.util.CsvDataSourceHelper;
@@ -27,15 +29,19 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.servlet.http.HttpServletRequest;
 
-public class TableStockValue extends DataSourceServlet
+public class TableStock extends DataSourceServlet
 {
-	private final ArrayList <ColumnDescription> column = new ArrayList <> ();
+	private final ArrayList <ColumnDescription> columnTemp = new ArrayList <> ();
 	private final ArrayList <String> urlYahoo = new ArrayList <> ();
+	private DecimalFormat formatter;
 	private Timer timer;
 	private String urlBefore;
 	private String urlAfter;
@@ -54,21 +60,11 @@ public class TableStockValue extends DataSourceServlet
 	@Override
 	public void init ()
 	{
-		this.column.add(new ColumnDescription(FieldStockValue.SYMBOL.toString(), ValueType.TEXT, FieldStockValue.SYMBOL.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.LAST_PRICE.toString(), ValueType.NUMBER, FieldStockValue.LAST_PRICE.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.CHANGE_PERCENT.toString(), ValueType.NUMBER, FieldStockValue.CHANGE_PERCENT.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.CHANGE_DOLLAR.toString(), ValueType.NUMBER, FieldStockValue.CHANGE_DOLLAR.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.BID.toString(), ValueType.NUMBER, FieldStockValue.BID.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.ASK.toString(), ValueType.NUMBER, FieldStockValue.ASK.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.OPEN.toString(), ValueType.NUMBER, FieldStockValue.OPEN.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.CLOSE.toString(), ValueType.NUMBER, FieldStockValue.CLOSE.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.HIGH.toString(), ValueType.NUMBER, FieldStockValue.HIGH.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.LOW.toString(), ValueType.NUMBER, FieldStockValue.LOW.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.WEEK_52_HIGH.toString(), ValueType.NUMBER, FieldStockValue.WEEK_52_HIGH.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.WEEK_52_LOW.toString(), ValueType.NUMBER, FieldStockValue.WEEK_52_LOW.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.VOLUME.toString(), ValueType.NUMBER, FieldStockValue.VOLUME.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.AVERAGE_VOLUME.toString(), ValueType.NUMBER, FieldStockValue.AVERAGE_VOLUME.toString()));
-		this.column.add(new ColumnDescription(FieldStockValue.MARKET_CAP.toString(), ValueType.TEXT, FieldStockValue.MARKET_CAP.toString()));
+		this.columnTemp.add(new ColumnDescription (FieldStockValue.SYMBOL.toString(), ValueType.TEXT, FieldStockValue.SYMBOL.toString()));
+		this.columnTemp.add(new ColumnDescription (FieldStockValue.LAST_PRICE.toString(), ValueType.NUMBER, FieldStockValue.LAST_PRICE.toString()));
+		this.columnTemp.add(new ColumnDescription (FieldStockValue.CHANGE_PERCENT.toString(), ValueType.NUMBER, FieldStockValue.CHANGE_PERCENT.toString()));
+		this.columnTemp.add(new ColumnDescription (FieldStockValue.VOLUME.toString(), ValueType.NUMBER, FieldStockValue.VOLUME.toString()));
+		this.columnTemp.add(new ColumnDescription (FieldStockValue.AVERAGE_VOLUME.toString(), ValueType.NUMBER, FieldStockValue.AVERAGE_VOLUME.toString()));
 		
 		this.urlBefore = FieldYahooFinance.URL.toString();
 		
@@ -76,48 +72,83 @@ public class TableStockValue extends DataSourceServlet
 		this.urlAfter = this.urlAfter + FieldYahooFinance.SYMBOL.toString();
 		this.urlAfter = this.urlAfter + FieldYahooFinance.LAST_PRICE.toString();
 		this.urlAfter = this.urlAfter + FieldYahooFinance.CHANGE_PERCENT.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.CHANGE_DOLLAR.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.BID.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.ASK.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.OPEN.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.CLOSE.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.HIGH.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.LOW.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.WEEK_52_HIGH.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.WEEK_52_LOW.toString();
 		this.urlAfter = this.urlAfter + FieldYahooFinance.VOLUME.toString();
 		this.urlAfter = this.urlAfter + FieldYahooFinance.AVERAGE_VOLUME.toString();
-		this.urlAfter = this.urlAfter + FieldYahooFinance.MARKET_CAP.toString();
 		
 		//this.timer = new Timer ();
 		//this.timer.schedule(new RefreshSymbolList (), 10000000, FieldNasdaq.DAY_IN_MILLISECOND.toInt());// Dans 10000000 millisec puis tout les jours
 		
 		this.refreshSymbolList();
+		
+		DecimalFormatSymbols symbol = new DecimalFormatSymbols (Locale.ENGLISH);
+		symbol.setDecimalSeparator('.');
+		symbol.setGroupingSeparator(',');
+		
+		this.formatter = new DecimalFormat ("###,###.##");
+		this.formatter.setDecimalFormatSymbols(symbol);
 	}
 	
 	@Override
 	public DataTable generateDataTable (Query query, HttpServletRequest request) throws DataSourceException
 	{
-		DataTable dataTable = null;
+		DataTable dataTable = new DataTable ();
+		DataTable dataTableTemp = null;
 		
 		for (final String url : this.urlYahoo)
 		{
 			try (final Reader stockData = new FilterCsv (new BufferedReader (new InputStreamReader (new URL (url).openStream()))))
 			{
-				if (dataTable != null)
-					dataTable.addRows(CsvDataSourceHelper.read(stockData, this.column, false).getRows());
+				if (dataTableTemp != null)
+					dataTableTemp.addRows(CsvDataSourceHelper.read(stockData, this.columnTemp, false).getRows());
 				else
-					dataTable = CsvDataSourceHelper.read(stockData, this.column, false);
+					dataTableTemp = CsvDataSourceHelper.read(stockData, this.columnTemp, false);
 			}
 			catch (MalformedURLException e)
 			{
-				System.out.println("TableStockValue generateDataTable() MalformedURLException " + "URL : " + url + " " + e);
+				System.out.println("TableStock generateDataTable() MalformedURLException " + "URL : " + url + " " + e);
 			}
 			catch (IOException e)
 			{
-				System.out.println("TableStockValue generateDataTable() IOException " + e);
+				System.out.println("TableStock generateDataTable() IOException " + e);
 			}
 		}
+		
+		ArrayList <Stock> higherStock = new ArrayList <> ();
+		
+		for (int i = 0; i < 3; i++)
+			higherStock.add(new Stock ("temp", "0.0", "0.0", "0.0", "0.0"));
+		
+		for (int i = 0; i < dataTableTemp.getNumberOfRows(); i++)
+			if (! dataTableTemp.getCell(i, 2).toString().equals("null"))
+				for (int j = 0; j < higherStock.size(); j++)
+				{
+					double changePercentDataTable = Double.parseDouble(dataTableTemp.getCell(i, 2).toString());
+					double changePercentArrayList = Double.parseDouble(higherStock.get(j).getChangePercent());
+					
+					if (changePercentDataTable > changePercentArrayList)
+					{
+						higherStock.get(j).setSymbol(dataTableTemp.getCell(i, 0).toString());
+						higherStock.get(j).setLastPrice(this.formatter.format(Double.parseDouble(dataTableTemp.getCell(i, 1).toString())));
+						higherStock.get(j).setChangePercent(this.formatter.format(Double.parseDouble(dataTableTemp.getCell(i, 2).toString())));
+						higherStock.get(j).setVolume(this.formatter.format(Double.parseDouble(dataTableTemp.getCell(i, 3).toString())));
+						higherStock.get(j).setAverageVolume(this.formatter.format(Double.parseDouble(dataTableTemp.getCell(i, 4).toString())));
+						
+						if ((j == 0) || (j == 1))
+							j = higherStock.size();
+					}
+				}
+		
+		ArrayList <ColumnDescription> column = new ArrayList <> ();
+		TableRow row = new TableRow ();
+		
+		for (int i = 0; i < higherStock.size(); i++)
+		{
+			column.add(new ColumnDescription (higherStock.get(i).getSymbol(), ValueType.TEXT, higherStock.get(i).getSymbol()));
+			row.addCell(higherStock.get(i).getLastPrice()+ " (" + higherStock.get(i).getChangePercent()+ "%) " + higherStock.get(i).getVolume()+ " (" + higherStock.get(i).getAverageVolume()+ ")");
+		}
+		
+		dataTable.addColumns(column);
+		dataTable.addRow(row);
 		
 		return dataTable;
 	}
@@ -173,7 +204,7 @@ public class TableStockValue extends DataSourceServlet
 		}
 		catch (FileNotFoundException e)
 		{
-			System.out.println("TableStockValue setUrlYahoo() FileNotFoundException " + "PATH : " + path + " " + e);
+			System.out.println("TableStock setUrlYahoo() FileNotFoundException " + "PATH : " + path + " " + e);
 		}
 		/*catch (MalformedURLException e)
 		{
@@ -181,7 +212,7 @@ public class TableStockValue extends DataSourceServlet
 		}*/
 		catch (IOException e)
 		{
-			System.out.println("TableStockValue setUrlYahoo() IOException " + "PATH : " + path + " " + e);
+			System.out.println("TableStock setUrlYahoo() IOException " + "PATH : " + path + " " + e);
 		}
 	}
 }

@@ -32,7 +32,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import javax.servlet.http.HttpServletRequest;
 
-public class TableIndiceValue extends DataSourceServlet
+public class TableIndiceUS extends DataSourceServlet
 {
 	private final ArrayList <ColumnDescription> column = new ArrayList <> ();
 	private String urlYahoo;
@@ -41,18 +41,14 @@ public class TableIndiceValue extends DataSourceServlet
 	@Override
 	public void init ()
 	{
-		this.column.add(new ColumnDescription(FieldIndice.TIME.toString(), ValueType.TEXT, FieldIndice.TIME.toString()));
-		this.column.add(new ColumnDescription(FieldIndice.DOW_JONES.toString(), ValueType.TEXT, FieldIndice.DOW_JONES.toString()));
+		this.column.add(new ColumnDescription (FieldIndice.TIME.toString(), ValueType.TEXT, FieldIndice.TIME.toString()));
+		this.column.add(new ColumnDescription (FieldIndice.DOW_JONES.toString(), ValueType.TEXT, FieldIndice.DOW_JONES.toString()));
 		
 		this.urlYahoo = FieldYahooFinance.URL.toString();
 		
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.NASDAQ.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.SP500.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.FTSE100.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.TSX100.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.CAC40.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.DAX30.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.NIKKEI225.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.ADD_COLUMN.toString();
 		
@@ -78,13 +74,9 @@ public class TableIndiceValue extends DataSourceServlet
 			
 			dataTable = CsvDataSourceHelper.read(reader, this.column, false);
 			
-			dataTable.addColumn(new ColumnDescription(FieldIndice.NASDAQ.toString(), ValueType.TEXT, FieldIndice.NASDAQ.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.SP500.toString(), ValueType.TEXT, FieldIndice.SP500.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.FTSE100.toString(), ValueType.TEXT, FieldIndice.FTSE100.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.TSX100.toString(), ValueType.TEXT, FieldIndice.TSX100.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.CAC40.toString(), ValueType.TEXT, FieldIndice.CAC40.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.DAX30.toString(), ValueType.TEXT, FieldIndice.DAX30.toString()));
-			dataTable.addColumn(new ColumnDescription(FieldIndice.NIKKEI225.toString(), ValueType.TEXT, FieldIndice.NIKKEI225.toString()));
+			dataTable.addColumn(new ColumnDescription (FieldIndice.NASDAQ.toString(), ValueType.TEXT, FieldIndice.NASDAQ.toString()));
+			dataTable.addColumn(new ColumnDescription (FieldIndice.SP500.toString(), ValueType.TEXT, FieldIndice.SP500.toString()));
+			dataTable.addColumn(new ColumnDescription (FieldIndice.TSX100.toString(), ValueType.TEXT, FieldIndice.TSX100.toString()));
 			
 			row.addCell(this.getTime());
 			row.addCell(this.getDowJonesValue());
@@ -109,11 +101,11 @@ public class TableIndiceValue extends DataSourceServlet
 		}
 		catch (MalformedURLException e)
 		{
-			System.out.println("TableIndiceValue generateDataTable() MalformedURLException " + "URL : " + this.urlYahoo + " " + e);
+			System.out.println("TableIndiceUS generateDataTable() MalformedURLException " + "URL : " + this.urlYahoo + " " + e);
 		}
 		catch (IOException e)
 		{
-			System.out.println("TableIndiceValue generateDataTable() IOException " + e);
+			System.out.println("TableIndiceUS generateDataTable() IOException " + e);
 		}
 		
 		return dataTable;
@@ -162,11 +154,11 @@ public class TableIndiceValue extends DataSourceServlet
 		}
 		catch (MalformedURLException e)
 		{
-			System.out.println("TableIndiceValue getDowJonesValue() MalformedURLException " + "URL : " + FieldGoogleFinance.URL.toString() + " " + e);
+			System.out.println("TableIndiceUS getDowJonesValue() MalformedURLException " + "URL : " + FieldGoogleFinance.URL.toString() + " " + e);
 		}
 		catch (IOException e)
 		{
-			System.out.println("TableIndiceValue getDowJonesValue() IOException " + e);
+			System.out.println("TableIndiceUS getDowJonesValue() IOException " + e);
 		}
 		
 		return dowJonesValue;

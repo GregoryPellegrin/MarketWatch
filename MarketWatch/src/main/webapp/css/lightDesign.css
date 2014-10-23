@@ -13,79 +13,62 @@ section
 	background-color: rgb(231, 231, 231);
 }
 
-.google-visualization-table-table
+.th
 {
 	background-color: rgb(231, 231, 231);
 }
 
-.indiceTh, .etfTh
-{
-	background-color: rgb(231, 231, 231);
-}
-
-.indiceThSpan, .etfThSpan
+.thSpan
 {
 	background-color: rgb(255, 255, 255);
 	
 	color: rgb(0, 0, 0);
 }
 
-.indiceTd, .etfTd
+.td
 {
 	background-color: rgb(231, 231, 231);
 	
 	color: rgb(0, 0, 0);
 }
 
-.indiceTdSpan, .etfTdSpan
+.tdSpan
 {
 	background-color: rgb(255, 255, 255);
 }
 
-.dataTableTh
+section#indiceUSSection article
 {
-	background-color: rgb(255, 255, 255);
+	border-right-color: rgb(95, 0, 0);
+	border-left-color: rgb(95, 0, 0);
 }
 
-.dataTableThSpan
+section#indiceEUSection article
 {
-	color: rgb(0, 0, 0);
-	
-	border-bottom-color: rgb(0, 0, 0);
+	border-right-color: rgb(175, 0, 0);
+	border-left-color: rgb(175, 0, 0);
 }
 
-.dataTableTdEven
+section#indiceAsiaSection article
 {
-	background-color: rgb(255, 255, 255);
-	
-	color: rgb(0, 0, 0);
+	border-right-color: rgb(255, 0, 0);
+	border-left-color: rgb(255, 0, 0);
 }
 
-.dataTableTdOdd
+section#indiceOtherSection article
 {
-	background-color: rgb(240, 240, 240);
-	
-	color: rgb(0, 0, 0);
+	border-right-color: rgb(0, 95, 0);
+	border-left-color: rgb(0, 95, 0);
 }
 
-.dataTableTdHover
+section#etfSection article
 {
-	background-color: rgb(220, 220, 220);
+	border-right-color: rgb(0, 175, 0);
+	border-left-color: rgb(0, 175, 0);
 }
 
-.dataTableTdSelected
+section#stockSection article
 {
-	background-color: rgb(210, 210, 210);
-}
-
-footer a
-{
-	background-color: rgb(255, 255, 255);
-	
-	color: rgb(0, 0, 0);
-}
-
-footer a:hover
-{
-	background-color: rgb(220, 220, 220);
+	border-right-color: rgb(0, 0, 0);
+	border-left-color: rgb(0, 0, 0);
 }
