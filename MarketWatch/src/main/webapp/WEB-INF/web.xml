@@ -24,6 +24,10 @@
         <servlet-name>TableStock</servlet-name>
         <servlet-class>Servlet.TableStock</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TableCurrency</servlet-name>
+        <servlet-class>Servlet.TableCurrency</servlet-class>
+    </servlet>
 	
     <servlet-mapping>
         <servlet-name>TableIndiceUS</servlet-name>
@@ -48,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>TableStock</servlet-name>
         <url-pattern>/TableStock</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TableCurrency</servlet-name>
+        <url-pattern>/TableCurrency</url-pattern>
     </servlet-mapping>
 	
     <session-config>

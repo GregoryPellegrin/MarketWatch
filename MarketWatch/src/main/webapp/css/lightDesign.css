@@ -13,6 +13,11 @@ section
 	background-color: rgb(231, 231, 231);
 }
 
+.google-visualization-table-table
+{
+	background-color: rgb(231, 231, 231);
+}
+
 .th
 {
 	background-color: rgb(231, 231, 231);
@@ -39,32 +44,38 @@ section
 
 section#indiceUSSection article
 {
-	border-right-color: rgb(95, 0, 0);
-	border-left-color: rgb(95, 0, 0);
+	border-right-color: rgb(0, 0, 153);
+	border-left-color: rgb(0, 0, 153);
 }
 
 section#indiceEUSection article
 {
-	border-right-color: rgb(175, 0, 0);
-	border-left-color: rgb(175, 0, 0);
+	border-right-color: rgb(0, 0, 153);
+	border-left-color: rgb(0, 0, 153);
 }
 
 section#indiceAsiaSection article
 {
-	border-right-color: rgb(255, 0, 0);
-	border-left-color: rgb(255, 0, 0);
+	border-right-color: rgb(0, 0, 153);
+	border-left-color: rgb(0, 0, 153);
 }
 
 section#indiceOtherSection article
 {
-	border-right-color: rgb(0, 95, 0);
-	border-left-color: rgb(0, 95, 0);
+	border-right-color: rgb(204, 0, 0);
+	border-left-color: rgb(204, 0, 0);
 }
 
 section#etfSection article
 {
-	border-right-color: rgb(0, 175, 0);
-	border-left-color: rgb(0, 175, 0);
+	border-right-color: rgb(204, 0, 0);
+	border-left-color: rgb(204, 0, 0);
+}
+
+section#currencySection article
+{
+	border-right-color: rgb(0, 153, 0);
+	border-left-color: rgb(0, 153, 0);
 }
 
 section#stockSection article

@@ -5,16 +5,16 @@
 
 package Field;
 
-public enum FieldGoogleFinance
+public enum FieldCurrency
 {
-	URL ("https://www.google.com/finance?q=DJI"),
-	
-	LAST_PRICE_PATTERN ("id=\"ref_983582_l\">"),
-	CHANGE_PERCENT_PATTERN ("id=\"ref_983582_cp\">");
+	USD_EUR ("USD/EUR"),
+	USD_CAD ("USD/CAD"),
+	USD_YEN ("USD/YEN"),
+	USD_YUAN ("USD/YUAN");
 	
 	private String field = "";
 	
-	FieldGoogleFinance (String field)
+	FieldCurrency (String field)
 	{
 		this.field = field;
 	}

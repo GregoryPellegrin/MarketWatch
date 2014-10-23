@@ -10,6 +10,7 @@ google.setOnLoadCallback(indiceEUTable);
 google.setOnLoadCallback(indiceAsiaTable);
 google.setOnLoadCallback(indiceOtherTable);
 google.setOnLoadCallback(etfTable);
+google.setOnLoadCallback(currencyTable);
 google.setOnLoadCallback(stockTable);
 
 function indiceUSTable ()
@@ -50,6 +51,14 @@ function etfTable ()
 	
 	etfData.setRefreshInterval(5);
 	etfData.send(createETFTable);
+}
+
+function currencyTable ()
+{
+	var currencyData = new google.visualization.Query('TableCurrency', {sendMethod: 'scriptInjection'});
+	
+	currencyData.setRefreshInterval(10);
+	currencyData.send(createCurrencyTable);
 }
 
 function stockTable ()

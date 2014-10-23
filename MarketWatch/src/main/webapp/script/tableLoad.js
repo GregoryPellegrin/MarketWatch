@@ -185,6 +185,42 @@ function createETFTable (response)
 	}
 }
 
+function createCurrencyTable (response)
+{
+	error(response);
+	
+	var data = response.getDataTable();
+	var table = new google.visualization.Table(document.getElementById('currencyTable'));
+	var cssClassNames =
+	{
+		headerRow: 'th',
+		tableRow: 'td',
+		headerCell: 'thSpan',
+		tableCell: 'tdSpan'
+	};
+	
+	if (data.getNumberOfRows() > 0)
+	{
+		data.removeRows(0, data.getNumberOfRows() - 1);
+
+		for (var i = 0; i < data.getNumberOfColumns(); i++)
+		{
+			if (data.getValue(0, i).indexOf('-') > -1)
+				data.setProperties(0, i, {style: 'color: red;'});
+			else
+				data.setProperties(0, i, {style: 'color: green;'});
+		}
+		
+		table.draw(data,
+		{
+			showRowNumber: false,
+			allowHtml: true,
+			sort: 'disable',
+			cssClassNames: cssClassNames
+		});
+	}
+}
+
 function createStockTable (response)
 {
 	error(response);

@@ -33,6 +33,12 @@
 	</article>
 </section>
 
+<section id="currencySection">
+	<article>
+		<div id="currencyTable"></div>
+	</article>
+</section>
+
 <section id="stockSection">
 	<article>
 		<div id="stockTable"></div>

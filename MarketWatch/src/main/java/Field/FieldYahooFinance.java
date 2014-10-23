@@ -32,10 +32,16 @@ public enum FieldYahooFinance
 	GLD ("GLD"),
 	SLV ("SLV"),
 	
-	SYMBOL ("s"),//s s0(Real)
+	USD_EUR ("USDEUR=X"),
+	USD_CAD ("USDCAD=X"),
+	USD_YEN ("USDJPY=X"),
+	USD_YUAN ("USDCNH=X"),
+	
+	SYMBOL ("s"),
 	LAST_PRICE ("l1"),
-	CHANGE_PERCENT ("p2"),//p2 c0 k2(Real time)
-	VOLUME ("v"),//v v0
+	CHANGE_DOLLAR ("c1"),
+	CHANGE_PERCENT ("p2"),
+	VOLUME ("v"),
 	AVERAGE_VOLUME ("a2");
 	
 	private String field = "";

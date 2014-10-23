@@ -5,6 +5,7 @@
 
 package Servlet;
 
+import Field.FieldBloomberg;
 import Field.FieldIndice;
 import Field.FieldYahooFinance;
 import Filter.FilterCsv;
@@ -26,6 +27,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Scanner;
 import javax.servlet.http.HttpServletRequest;
 
 public class TableIndiceOther extends DataSourceServlet
@@ -43,7 +45,6 @@ public class TableIndiceOther extends DataSourceServlet
 		this.urlYahoo = FieldYahooFinance.URL.toString();
 		
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.VIX.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
-		this.urlYahoo = this.urlYahoo + FieldYahooFinance.BDI.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.GOLD.toString() + FieldYahooFinance.STOCK_SEPARATOR.toString();
 		
 		this.urlYahoo = this.urlYahoo + FieldYahooFinance.ADD_COLUMN.toString();
@@ -85,6 +86,9 @@ public class TableIndiceOther extends DataSourceServlet
 				String lastPriceString = this.formatter.format(Double.parseDouble(lastPriceDataTable));
 				String changePercentString = this.formatter.format(Double.parseDouble(changePercentDataTable));
 				
+				if (i == 1)
+					row.addCell(this.getBalticDryIndex());
+				
 				row.addCell(lastPriceString + " (" + changePercentString + "%)");
 			}
 			
@@ -106,5 +110,47 @@ public class TableIndiceOther extends DataSourceServlet
 	protected boolean isRestrictedAccessMode ()
 	{
 		return false;
+	}
+	
+	private String getBalticDryIndex ()
+	{
+		String balticDryIndex = "0";
+		
+		try (final Scanner balticDryIndexWebPage = new Scanner (new URL (FieldBloomberg.URL.toString()).openStream()))
+		{
+			boolean lastPriceHasFind = false;
+			boolean changePercentHasFind = false;
+			
+			while (balticDryIndexWebPage.hasNext() && ((! lastPriceHasFind) || (! changePercentHasFind)))
+			{
+				String value = balticDryIndexWebPage.next();
+				
+				if (value.contains(FieldBloomberg.LAST_PRICE_PATTERN.toString()))
+				{
+					value = balticDryIndexWebPage.next();
+					balticDryIndex = value.replaceFirst(FieldBloomberg.ITEM_FIND_PATTERN.toString(), "").replace("\"", "");
+					balticDryIndex = balticDryIndex + " ";
+					
+					lastPriceHasFind = true;
+				}
+				else if (value.contains(FieldBloomberg.CHANGE_PERCENT_PATTERN.toString()))
+				{
+					value = balticDryIndexWebPage.next();
+					balticDryIndex = balticDryIndex + "(" + value.replaceFirst(FieldBloomberg.ITEM_FIND_PATTERN.toString(), "").replace("\"", "") + "%)";
+					
+					changePercentHasFind = true;
+				}
+			}
+		}
+		catch (MalformedURLException e)
+		{
+			System.out.println("TableIndiceOther getBalticDryIndex() MalformedURLException " + "URL : " + FieldBloomberg.URL.toString() + " " + e);
+		}
+		catch (IOException e)
+		{
+			System.out.println("TableIndiceOther getBalticDryIndex() IOException " + e);
+		}
+		
+		return balticDryIndex;
 	}
 }

@@ -23,11 +23,12 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,7 @@ public class TableIndiceUS extends DataSourceServlet
 			dataTable.addColumn(new ColumnDescription (FieldIndice.TSX100.toString(), ValueType.TEXT, FieldIndice.TSX100.toString()));
 			
 			row.addCell(this.getTime());
-			row.addCell(this.getDowJonesValue());
+			row.addCell(this.getDowJones());
 			
 			for (int i = 0; i < dataTable.getNumberOfRows(); i++)
 			{
@@ -119,14 +120,15 @@ public class TableIndiceUS extends DataSourceServlet
 	
 	private String getTime ()
 	{
-		Calendar time = GregorianCalendar.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat ("HH:mm");
+		Calendar calendar = Calendar.getInstance();
 		
-		return time.get(Calendar.HOUR_OF_DAY) + ":" + time.get(Calendar.MINUTE);
+		return dateFormat.format(calendar.getTime());
 	}
 	
-	private String getDowJonesValue ()
+	private String getDowJones ()
 	{
-		String dowJonesValue = "0";
+		String dowJones = "0";
 		
 		try (final Scanner dowJonesWebPage = new Scanner (new URL (FieldGoogleFinance.URL.toString()).openStream()))
 		{
@@ -139,14 +141,14 @@ public class TableIndiceUS extends DataSourceServlet
 				
 				if (value.contains(FieldGoogleFinance.LAST_PRICE_PATTERN.toString()))
 				{
-					dowJonesValue = value.replaceFirst(FieldGoogleFinance.LAST_PRICE_PATTERN.toString(), "").replaceFirst("</span>", "");
-					dowJonesValue = dowJonesValue + " ";
+					dowJones = value.replaceFirst(FieldGoogleFinance.LAST_PRICE_PATTERN.toString(), "").replaceFirst("</span>", "");
+					dowJones = dowJones + " ";
 					
 					lastPriceHasFind = true;
 				}
 				else if (value.contains(FieldGoogleFinance.CHANGE_PERCENT_PATTERN.toString()))
 				{
-					dowJonesValue = dowJonesValue + value.replaceFirst(FieldGoogleFinance.CHANGE_PERCENT_PATTERN.toString(), "").replaceFirst("</span>", "");
+					dowJones = dowJones + value.replaceFirst(FieldGoogleFinance.CHANGE_PERCENT_PATTERN.toString(), "").replaceFirst("</span>", "");
 					
 					changePercentHasFind = true;
 				}
@@ -154,13 +156,13 @@ public class TableIndiceUS extends DataSourceServlet
 		}
 		catch (MalformedURLException e)
 		{
-			System.out.println("TableIndiceUS getDowJonesValue() MalformedURLException " + "URL : " + FieldGoogleFinance.URL.toString() + " " + e);
+			System.out.println("TableIndiceUS getDowJones() MalformedURLException " + "URL : " + FieldGoogleFinance.URL.toString() + " " + e);
 		}
 		catch (IOException e)
 		{
-			System.out.println("TableIndiceUS getDowJonesValue() IOException " + e);
+			System.out.println("TableIndiceUS getDowJones() IOException " + e);
 		}
 		
-		return dowJonesValue;
+		return dowJones;
 	}
 }
