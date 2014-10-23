@@ -19,6 +19,7 @@ public enum FieldBloomberg
 	FieldBloomberg (String field)
 	{
 		this.field = field;
+		int test;
 	}
 	
 	@Override
