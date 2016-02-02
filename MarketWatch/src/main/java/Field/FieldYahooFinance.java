@@ -23,8 +23,8 @@ public enum FieldYahooFinance
 	
 	VIX ("^VIX"),
 	BDI ("^GDAXI"),
-	GOLD ("GCM14.CMX"),
-	
+	GOLD ("GCG16.CMX"), // La valeur doit etre changé chaque mois pour correspondre au bon indice de l'or dans Yahoo
+
 	SPY ("SPY"),
 	UPRO ("UPRO"),
 	SDS ("SDS"),

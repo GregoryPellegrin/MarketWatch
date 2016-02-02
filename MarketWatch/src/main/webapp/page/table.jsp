@@ -39,8 +39,8 @@
 	</article>
 </section>
 
-<section id="stockSection">
+<!--section id="stockSection">
 	<article>
 		<div id="stockTable"></div>
 	</article>
-</section>
+</section-->

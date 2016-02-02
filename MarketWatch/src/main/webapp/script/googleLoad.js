@@ -11,7 +11,7 @@ google.setOnLoadCallback(indiceAsiaTable);
 google.setOnLoadCallback(indiceOtherTable);
 google.setOnLoadCallback(etfTable);
 google.setOnLoadCallback(currencyTable);
-google.setOnLoadCallback(stockTable);
+/*google.setOnLoadCallback(stockTable);*/
 
 function indiceUSTable ()
 {
@@ -61,10 +61,10 @@ function currencyTable ()
 	currencyData.send(createCurrencyTable);
 }
 
-function stockTable ()
+/*function stockTable ()
 {
 	var stockData = new google.visualization.Query('TableStock', {sendMethod: 'scriptInjection'});
 	
 	stockData.setRefreshInterval(20);
 	stockData.send(createStockTable);
-}
+}*/
